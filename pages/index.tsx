@@ -7,14 +7,14 @@ import {
 
 const Home = () => {
   const { contract } = useContract(
-    process.env.NEXT_PUBLIC_MARKETPLACE_ADDRESS,
+    process.env.NEXT_PUBLIC_MARKETPLACE_CONTRACT,
     "marketplace"
   );
 
-  const { data: listings, isLoading: loadingListings } =
+  const { data: listing, isLoading: loadingListings } =
     useActiveListings(contract);
 
-  console.log(listings);
+  console.log(listing);
 
   return (
     <div>
