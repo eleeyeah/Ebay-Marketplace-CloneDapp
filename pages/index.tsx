@@ -4,6 +4,8 @@ import {
   MediaRenderer,
   useActiveListings,
 } from "@thirdweb-dev/react";
+import { ListingType } from "@thirdweb-dev/sdk";
+import { BanknotesIcon, ClockIcon } from "@heroicons/react/24/outline";
 
 const Home = () => {
   const { contract } = useContract(
@@ -29,7 +31,7 @@ const Home = () => {
                 className="flex flex-col card hover:scale-105 transition-all duration-150 ease-out"
                 key={listing.id}
               >
-                <div className="flex-1 flex-col pb-2 items-center">
+                <div className="flex-1 flex flex-col pb-2 items-center">
                   <MediaRenderer className="w-44" src={listing.asset.image} />
                 </div>
                 <div className="pt-2 space-y-4">
@@ -42,12 +44,30 @@ const Home = () => {
                   </div>
 
                   <p>
-                    <span className="font-bold">
+                    <span className="font-bold mr-2">
                       {" "}
                       {listing.buyoutCurrencyValuePerToken.displayValue}{" "}
                     </span>
                     {listing.buyoutCurrencyValuePerToken.symbol}
                   </p>
+                  <div
+                    className={`flex items-center space-x-1 justify-end text-xs border w-fit ml-auto p-2 rounded-lg text-white ${
+                      listing.type === ListingType.Direct
+                        ? "bg-blue-500"
+                        : "bg-red-500"
+                    } `}
+                  >
+                    <p>
+                      {listing.type === ListingType.Direct
+                        ? "Buy Now"
+                        : "Auction"}
+                    </p>
+                    {listing.type === ListingType.Direct ? (
+                      <BanknotesIcon className="h-4" />
+                    ) : (
+                      <ClockIcon className="h-4" />
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
