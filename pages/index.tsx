@@ -32,9 +32,22 @@ const Home = () => {
                 <div className="flex-1 flex-col pb-2 items-center">
                   <MediaRenderer className="w-44" src={listing.asset.image} />
                 </div>
-                <div></div>
-                <div>
-                  <h2>{listing.asset.name}</h2>
+                <div className="pt-2 space-y-4">
+                  <div>
+                    <h2 className="text-lg truncate">{listing.asset.name}</h2>
+                    <hr />
+                    <p className="truncate text-sm text-gray-600 mt-2">
+                      {listing.asset.description}
+                    </p>
+                  </div>
+
+                  <p>
+                    <span className="font-bold">
+                      {" "}
+                      {listing.buyoutCurrencyValuePerToken.displayValue}{" "}
+                    </span>
+                    {listing.buyoutCurrencyValuePerToken.symbol}
+                  </p>
                 </div>
               </div>
             ))}
